@@ -1,0 +1,1564 @@
+:root {
+    /* ---- Brand accent ----
+     SAGE is the primary accent. Rose-gold is kept as a ready swap:
+     to flip the whole site to rose-gold, change the two --accent lines
+     below to the rose-gold values. To use rose-gold in ONE spot, write
+     color:var(--rose-gold) on that element. */
+    --sage: #4F8A75;
+    --sage-deep: #3B6B5A;
+    --sage-soft: #9FCDB9;
+    --rose-gold: #B4736A;
+    --rose-gold-deep: #8E5850;
+    --accent: var(--sage);
+    /* ← primary accent (swap to --rose-gold to rebrand) */
+    --accent-deep: var(--sage-deep);
+    /* ← accent hover/active */
+
+    /* ---- Ink / neutrals ---- */
+    --heading: #243029;
+    /* display headings (dark green-ink, AA on glass) */
+    --body: #44524C;
+    /* body copy */
+    --muted: #5E6E67;
+    /* captions / meta (≥4.5:1 on glass) */
+    --ink-green: #2F3D38;
+    /* dark contact block */
+    --ink-green-deep: #253430;
+    /* footer */
+    --mint-hi: #9FCDB9;
+    /* labels on dark green */
+    --white: #ffffff;
+
+    /* ---- Type ---- */
+    --font-display: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+    --font-body: 'Jost', 'Helvetica Neue', Arial, sans-serif;
+    --lh-tight: 1.05;
+    --lh-body: 1.65;
+
+    /* ---- Shape language: ROUNDED RECTANGLE ---- */
+    --btn-radius: 12px;
+    /* buttons */
+    --radius-card: 22px;
+    /* cards / panels */
+    --radius-bar: 20px;
+    /* the floating nav bar */
+
+    /* ---- Layout ---- */
+    --nav-h: 76px;
+    --gutter: 48px;
+    --container: 1200px;
+
+    /* ---- Motion ---- */
+    --ease: cubic-bezier(.2, .7, .2, 1);
+    --dur: 260ms;
+    --dur-fast: 150ms;
+
+    /* ---- Glass ---- */
+    --glass-bg: rgba(255, 255, 255, .44);
+    --glass-brd: rgba(255, 255, 255, .62);
+    --glass-soft-bg: rgba(255, 255, 255, .32);
+    --line: rgba(255, 255, 255, .55);
+
+    /* ---- The sage colour mesh the glass refracts (see body::before) ---- */
+    --bg-mesh:
+        radial-gradient(38% 44% at 18% 20%, rgba(95, 155, 132, .82), transparent 60%),
+        radial-gradient(34% 40% at 82% 12%, rgba(217, 163, 155, .62), transparent 62%),
+        radial-gradient(46% 50% at 75% 78%, rgba(120, 180, 155, .80), transparent 60%),
+        radial-gradient(40% 46% at 25% 88%, rgba(230, 243, 238, .95), transparent 60%),
+        radial-gradient(60% 60% at 50% 45%, rgba(246, 252, 249, .55), transparent 70%),
+        linear-gradient(160deg, #EDF6F1 0%, #EEF2EC 45%, #F5EAEF 100%);
+}
+
+* {
+    box-sizing: border-box
+}
+
+html {
+    scroll-behavior: smooth
+}
+
+body {
+    margin: 0;
+    font-family: var(--font-body);
+    font-weight: 300;
+    font-size: 16px;
+    line-height: var(--lh-body);
+    color: var(--heading);
+    background: #EAF4EF;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility
+}
+
+img {
+    max-width: 100%;
+    display: block
+}
+
+h1,
+h2,
+h3 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    margin: 0;
+    line-height: var(--lh-tight);
+    color: var(--heading)
+}
+
+p {
+    margin: 0
+}
+
+a {
+    color: var(--accent);
+    text-decoration: none
+}
+
+a:hover {
+    color: var(--accent-deep)
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+    list-style: none
+}
+
+:focus-visible {
+    outline: 2px solid var(--accent-deep);
+    outline-offset: 3px;
+    border-radius: 4px
+}
+
+/* Fixed sage mesh backdrop that the glass panels refract */
+body::before {
+    content: "";
+    position: fixed;
+    inset: -10%;
+    z-index: -2;
+    background: var(--bg-mesh);
+    filter: saturate(115%)
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background: radial-gradient(120% 90% at 50% 0%, transparent 60%, rgba(120, 80, 75, .06) 100%)
+}
+
+.wrap {
+    max-width: var(--container);
+    margin: 0 auto;
+    padding-left: var(--gutter);
+    padding-right: var(--gutter)
+}
+
+.eyebrow {
+    font-size: 13px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--ink-green);
+    font-weight: 400
+}
+
+.skip-link {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    z-index: 300;
+    background: var(--ink-green);
+    color: #fff;
+    padding: 12px 20px;
+    border-radius: 0 0 8px 0
+}
+
+.skip-link:focus {
+    left: 0;
+    color: #fff
+}
+
+.visually-hidden {
+    position: absolute !important;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+    border: 0
+}
+
+/* ------------------------ glass ------------------------ */
+.glass {
+    position: relative;
+    background: var(--glass-bg);
+    -webkit-backdrop-filter: blur(26px) saturate(180%);
+    backdrop-filter: blur(26px) saturate(180%);
+    border: 1px solid var(--glass-brd);
+    border-radius: var(--radius-card);
+    box-shadow: 0 10px 34px rgba(40, 70, 58, .14), inset 0 1px 0 rgba(255, 255, 255, .85), inset 0 -1px 0 rgba(255, 255, 255, .25)
+}
+
+.glass::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    background: linear-gradient(180deg, rgba(255, 255, 255, .5) 0%, rgba(255, 255, 255, 0) 34%)
+}
+
+.glass>* {
+    position: relative;
+    z-index: 1
+}
+
+.glass-soft {
+    background: var(--glass-soft-bg);
+    -webkit-backdrop-filter: blur(16px) saturate(160%);
+    backdrop-filter: blur(16px) saturate(160%);
+    border: 1px solid rgba(255, 255, 255, .5);
+    border-radius: 16px
+}
+
+/* If the browser can't blur, fall back to near-opaque so text stays readable */
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))) {
+    .glass {
+        background: rgba(255, 255, 255, .9)
+    }
+
+    .glass-soft {
+        background: rgba(255, 255, 255, .85)
+    }
+
+    .nav-inner {
+        background: rgba(255, 255, 255, .93) !important
+    }
+
+    .book-bar {
+        background: rgba(255, 255, 255, .95) !important
+    }
+}
+
+/* Respect "Reduce Transparency" (macOS/iOS) */
+@media (prefers-reduced-transparency:reduce) {
+    .glass {
+        background: rgba(255, 255, 255, .93)
+    }
+
+    .glass-soft {
+        background: rgba(255, 255, 255, .9)
+    }
+
+    .nav-inner {
+        background: rgba(255, 255, 255, .95) !important
+    }
+}
+
+/* Readability panel: frosted glass at 36%. Pairs with the dark ink-green
+   labels so on-mesh text still clears WCAG AA. Add "rp" alongside "glass"
+   on any text block that sits on the mesh. */
+.rp {
+    background: rgba(255, 255, 255, .36);
+}
+
+/* make .eyebrow safe to use ON an <h2> (it'd otherwise inherit the serif h-tag font) */
+.eyebrow {
+    font-family: var(--font-body);
+}
+
+/* the demoted display line keeps the old big-serif h2 look */
+.headline {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 48px;
+    line-height: 1.05;
+    color: var(--heading);
+}
+
+.contact .headline {
+    color: #fff;
+}
+
+/* dark contact block */
+@media (max-width:1100px) {
+    .headline {
+        font-size: 40px;
+    }
+}
+
+@media (max-width:768px) {
+    .headline {
+        font-size: 30px;
+    }
+}
+
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))) {
+    .rp {
+        background: rgba(255, 255, 255, .93);
+    }
+}
+
+@media (prefers-reduced-transparency:reduce) {
+    .rp {
+        background: rgba(255, 255, 255, .94);
+    }
+}
+
+/* ---- content panel + About two-column layout ---- */
+.panel {
+    padding: 40px 44px;
+}
+
+/* the missing interior padding */
+
+.split {
+    /* label/heading | body copy */
+    display: grid;
+    grid-template-columns: 5fr 7fr;
+    gap: 44px;
+    align-items: start;
+}
+
+.section-intro {
+    max-width: 720px;
+}
+
+.about-copy p {
+    color: var(--body);
+    max-width: 62ch;
+    margin-bottom: 14px;
+}
+
+.about-copy p:last-child {
+    margin-bottom: 0;
+}
+
+@media (max-width: 860px) {
+    .split {
+        grid-template-columns: 1fr;
+        gap: 28px;
+    }
+}
+
+@media (max-width: 768px) {
+    .panel {
+        padding: 26px 22px;
+    }
+}
+
+
+/* ------------------------ button ------------------------ */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border-radius: var(--btn-radius);
+    padding: 15px 28px;
+    border: 1px solid transparent;
+    cursor: pointer;
+    line-height: 1;
+    white-space: nowrap;
+    transition: background var(--dur) var(--ease), color var(--dur) var(--ease), transform var(--dur-fast) var(--ease), border-color var(--dur) var(--ease)
+}
+
+.btn:active {
+    transform: translateY(1px)
+}
+
+.btn-primary {
+    background: var(--accent);
+    color: #fff
+}
+
+.btn-primary:hover {
+    background: var(--accent-deep);
+    color: #fff
+}
+
+.btn-glass {
+    background: rgba(255, 255, 255, .42);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    border-color: rgba(255, 255, 255, .7);
+    color: var(--heading)
+}
+
+.btn-glass:hover {
+    background: rgba(255, 255, 255, .64);
+    color: var(--heading)
+}
+
+.btn-ghost-light {
+    background: transparent;
+    border-color: var(--mint-hi);
+    color: #fff
+}
+
+.btn-ghost-light:hover {
+    border-color: #fff;
+    color: #fff
+}
+
+.btn-sm {
+    padding: 12px 22px;
+    font-size: 13px
+}
+
+
+/* ------------------------ section spacing ------------------------ */
+main {
+    display: block
+}
+
+section {
+    scroll-margin-top: calc(var(--nav-h) + 24px)
+}
+
+.pad {
+    padding-top: 88px;
+    padding-bottom: 88px
+}
+
+h2 {
+    font-size: 48px
+}
+
+.lead {
+    font-size: 19px;
+    line-height: var(--lh-body);
+    color: var(--body)
+}
+
+.sec-head {
+    display: flex;
+    flex-direction: column;
+    gap: 10px
+}
+
+.sec-head.center {
+    align-items: center;
+    text-align: center
+}
+
+
+/* ------------------------ navbar ------------------------ */
+.nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    padding: 14px var(--gutter) 0
+}
+
+.nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    max-width: var(--container);
+    margin: 0 auto;
+    height: var(--nav-h);
+    padding: 0 14px 0 20px;
+    border-radius: var(--radius-bar);
+    background: rgba(255, 255, 255, .5);
+    -webkit-backdrop-filter: blur(22px) saturate(180%);
+    backdrop-filter: blur(22px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, .62);
+    box-shadow: 0 8px 26px rgba(40, 70, 58, .14), inset 0 1px 0 rgba(255, 255, 255, .8)
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 0
+}
+
+.brand img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    mix-blend-mode: multiply;
+    flex: none
+}
+
+.brand .wordmark {
+    font-family: var(--font-display);
+    font-size: 19px;
+    letter-spacing: 4px;
+    color: var(--heading);
+    font-weight: 500;
+    white-space: nowrap
+}
+
+.nav-links {
+    display: flex;
+    gap: 30px;
+    font-size: 14px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-weight: 400
+}
+
+.nav-links a {
+    color: var(--heading);
+    position: relative;
+    padding: 4px 0
+}
+
+.nav-links a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 100%;
+    bottom: -2px;
+    height: 1px;
+    background: var(--accent);
+    transition: right var(--dur) var(--ease)
+}
+
+.nav-links a:hover::after {
+    right: 0
+}
+
+.nav-cta {
+    display: flex;
+    align-items: center;
+    gap: 14px
+}
+
+.hamburger {
+    display: none;
+    background: none;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    color: var(--heading);
+    min-width: 44px;
+    min-height: 44px;
+    align-items: center;
+    justify-content: center
+}
+
+/* Mobile full-screen menu */
+.menu-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    display: flex;
+    flex-direction: column;
+    visibility: hidden;
+    transform: translateY(-100%);
+    transition: transform var(--dur) var(--ease);
+    background: rgba(236, 246, 241, .72);
+    -webkit-backdrop-filter: blur(30px) saturate(160%);
+    backdrop-filter: blur(30px) saturate(160%)
+}
+
+.menu-overlay.open {
+    transform: translateY(0);
+    visibility: visible
+}
+
+.menu-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+    height: var(--nav-h);
+    border-bottom: 1px solid rgba(255, 255, 255, .5)
+}
+
+.menu-top .wordmark {
+    font-family: var(--font-display);
+    font-size: 18px;
+    letter-spacing: 4px;
+    color: var(--heading);
+    font-weight: 500
+}
+
+.menu-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 24px;
+    overflow: auto
+}
+
+.menu-list a {
+    font-family: var(--font-display);
+    font-size: 32px;
+    color: var(--heading);
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, .5)
+}
+
+.menu-list .btn {
+    margin-top: 18px
+}
+
+.icon-btn {
+    background: none;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    color: var(--heading);
+    min-width: 44px;
+    min-height: 44px
+}
+
+/* Sticky bottom Book bar (phones) */
+.book-bar {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 90;
+    display: none;
+    padding: 12px 20px calc(12px + env(safe-area-inset-bottom));
+    border-top: 1px solid rgba(255, 255, 255, .6);
+    background: rgba(236, 246, 241, .62);
+    -webkit-backdrop-filter: blur(22px) saturate(170%);
+    backdrop-filter: blur(22px) saturate(170%)
+}
+
+.book-bar .btn {
+    width: 100%
+}
+
+
+/* ------------------------ hero section ------------------------ */
+.hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 24px;
+    padding-top: 64px;
+    padding-bottom: 64px
+}
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 18px;
+    border-radius: 999px;
+    font-size: 13px;
+    color: var(--accent-deep);
+    background: rgba(255, 255, 255, .42);
+    border: 1px solid rgba(255, 255, 255, .65);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px)
+}
+
+.badge i {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--rose-gold)
+}
+
+/* small rose-gold accent dot */
+.hero h1 {
+    font-size: 72px;
+    line-height: 1.04;
+    max-width: 16ch
+}
+
+.hero h1 em {
+    font-style: italic;
+    color: var(--rose-gold-deep)
+}
+
+.hero .lead {
+    max-width: 620px;
+    color: #3A4640
+        /* custom color for accessibility on this section */
+}
+
+.hero-actions {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    justify-content: center
+}
+
+.hero-band {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    width: 100%;
+    max-width: 980px;
+    margin-top: 26px
+}
+
+.hero-band .tile {
+    aspect-ratio: 4/5;
+    border-radius: 18px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, .4);
+    border: 1px solid rgba(255, 255, 255, .55);
+    display: flex;
+    align-items: flex-end;
+    padding: 16px;
+    font-size: 12px;
+    color: var(--muted)
+}
+
+.hero-band img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 18px
+}
+
+
+/* ------------------------ services section ------------------------ */
+.svc-wrap {
+    display: grid;
+    grid-template-columns: 4fr 8fr;
+    gap: 28px
+}
+
+.svc-aside {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    position: sticky;
+    top: calc(var(--nav-h) + 24px);
+    align-self: start
+}
+
+.svc-aside h2 {
+    line-height: 1.05
+}
+
+.svc-aside p {
+    font-size: 16px;
+    color: var(--body);
+    max-width: 340px
+}
+
+.svc-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px
+}
+
+.svc-row {
+    display: grid;
+    grid-template-columns: 4fr 6fr 2fr;
+    gap: 24px;
+    align-items: baseline;
+    padding: 28px 30px
+}
+
+.svc-row h3 {
+    font-size: 28px;
+    font-weight: 500
+}
+
+.svc-row p {
+    font-size: 15px;
+    line-height: var(--lh-body);
+    color: var(--body)
+}
+
+.svc-row .price {
+    text-align: right;
+    font-size: 14px;
+    color: var(--accent-deep);
+    white-space: nowrap
+}
+
+
+/* ------------------------ results section ------------------------ */
+.results-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 28px
+}
+
+.consent {
+    max-width: 460px;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--muted)
+}
+
+.carousel {
+    position: relative;
+    padding: 22px
+}
+
+/* Native horizontal scroll + snap (great touch feel on mobile; arrows/dots just drive scrollTo) */
+.carousel-viewport {
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    border-radius: 16px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    overscroll-behavior-x: contain
+}
+
+.carousel-viewport::-webkit-scrollbar {
+    display: none
+}
+
+.carousel-track {
+    display: flex
+}
+
+.slide {
+    flex: 0 0 100%;
+    min-width: 0;
+    padding: 4px;
+    scroll-snap-align: center;
+    scroll-snap-stop: always
+}
+
+.pair {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, .5)
+}
+
+.pair .half {
+    position: relative;
+    aspect-ratio: 3/4;
+    display: flex;
+    align-items: flex-end;
+    background: linear-gradient(160deg, #E7F1EC, #D5E6DE)
+}
+
+.pair .half.after {
+    background: linear-gradient(160deg, #F1DFDA, #E3C7C0)
+}
+
+/* rose-tinted "after" for contrast */
+.pair .half img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover
+}
+
+.pair .half span {
+    position: relative;
+    z-index: 1;
+    margin: 12px;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #fff;
+    background: rgba(36, 48, 41, .6);
+    padding: 4px 9px;
+    border-radius: 6px
+}
+
+.slide figcaption {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    align-items: baseline;
+    margin-top: 14px
+}
+
+.slide figcaption h3 {
+    font-size: 22px;
+    font-weight: 500
+}
+
+.slide figcaption .detail {
+    font-size: 13px;
+    color: var(--muted)
+}
+
+.car-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--heading);
+    background: rgba(255, 255, 255, .6);
+    border: 1px solid rgba(255, 255, 255, .75);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px)
+}
+
+.car-btn:hover {
+    background: rgba(255, 255, 255, .82)
+}
+
+.car-btn.prev {
+    left: -6px
+}
+
+.car-btn.next {
+    right: -6px
+}
+
+.car-btn:disabled {
+    opacity: .35;
+    cursor: default
+}
+
+.dots {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    margin-top: 18px
+}
+
+.dots button {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    background: rgba(36, 48, 41, .2);
+    padding: 0
+}
+
+.dots button[aria-current="true"] {
+    background: var(--accent)
+}
+
+
+/* ------------------------ FAQ section ------------------------ */
+/* ---- FAQ ---- */
+.faq-wrap {
+    display: grid;
+    grid-template-columns: 4fr 8fr;
+    gap: 28px
+}
+
+.faq-list {
+    display: flex;
+    flex-direction: column
+}
+
+.faq-item {
+    border-top: 1px solid rgba(255, 255, 255, .5)
+}
+
+.faq-list .faq-item:last-child {
+    border-bottom: 1px solid rgba(255, 255, 255, .5)
+}
+
+.faq-q {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    text-align: left;
+    background: none;
+    border: none;
+    padding: 22px 0;
+    cursor: pointer;
+    font-family: var(--font-body);
+    font-size: 17px;
+    color: var(--heading);
+    font-weight: 400
+}
+
+.faq-q .ic {
+    color: var(--accent);
+    font-size: 24px;
+    line-height: 1;
+    flex: none;
+    transition: transform var(--dur) var(--ease)
+}
+
+.faq-q[aria-expanded="true"] .ic {
+    transform: rotate(45deg)
+}
+
+.faq-a {
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height var(--dur) var(--ease)
+}
+
+.faq-a p {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--muted);
+    padding-bottom: 22px;
+    max-width: 70ch
+}
+
+
+/* ------------------------ contact section ------------------------ */
+/* ---- CONTACT: dark-green block ---- */
+.contact {
+    background: var(--ink-green);
+    color: #EAF4EF;
+    border-radius: var(--radius-card);
+    margin: 0 var(--gutter);
+    overflow: hidden
+}
+
+.contact .wrap {
+    padding-top: 72px;
+    padding-bottom: 72px
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px
+}
+
+.contact h2 {
+    color: #fff
+}
+
+.contact .eyebrow {
+    color: var(--mint-hi)
+}
+
+.c-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px;
+    font-size: 16px;
+    line-height: 1.6
+}
+
+.c-info .lbl {
+    display: block;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--mint-hi);
+    margin-bottom: 3px
+}
+
+.c-info a {
+    color: #fff
+}
+
+.c-info a:hover {
+    color: var(--mint-hi)
+}
+
+.contact-left {
+    display: flex;
+    flex-direction: column;
+    gap: 24px
+}
+
+.socials {
+    display: flex;
+    gap: 12px
+}
+
+.socials a {
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    background: rgba(255, 255, 255, .08);
+    border: 1px solid rgba(255, 255, 255, .18);
+    transition: background var(--dur)
+}
+
+.socials a:hover {
+    background: rgba(255, 255, 255, .18);
+    color: #fff
+}
+
+.socials svg {
+    width: 20px;
+    height: 20px
+}
+
+.contact-actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap
+}
+
+.map-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 14px;
+    min-height: 300px;
+    border-radius: 18px;
+    padding: 24px;
+    text-decoration: none;
+    background: rgba(255, 255, 255, .06);
+    border: 1px solid rgba(255, 255, 255, .18);
+    color: #fff
+}
+
+.map-card:hover {
+    background: rgba(255, 255, 255, .1);
+    color: #fff;
+    border-color: rgba(255, 255, 255, .3)
+}
+
+.map-card .pin {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, .9);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--ink-green)
+}
+
+.map-card .dir {
+    font-size: 13px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--mint-hi)
+}
+
+
+/* ------------------------ footer ------------------------ */
+.footer {
+    background: var(--ink-green-deep);
+    color: var(--mint-hi);
+    font-size: 13px;
+    letter-spacing: 1px
+}
+
+.footer-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    padding-top: 26px;
+    padding-bottom: 26px
+}
+
+.footer .fbrand {
+    font-family: var(--font-display);
+    font-size: 20px;
+    letter-spacing: 5px;
+    color: #fff
+}
+
+.footer a {
+    color: var(--mint-hi)
+}
+
+.footer a:hover {
+    color: #fff
+}
+
+.footer-links {
+    display: flex;
+    gap: 20px
+}
+
+
+/* ------------------------ responsive rules ------------------------ */
+@media (max-width:1100px) {
+    :root {
+        --gutter: 32px
+    }
+
+    h2 {
+        font-size: 40px
+    }
+
+    .hero h1 {
+        font-size: 60px
+    }
+}
+
+@media (max-width:1024px) {
+
+    /* Collapse nav → hamburger + bottom Book bar */
+    .nav-links {
+        display: none
+    }
+
+    .nav-cta .desktop-only {
+        display: none
+    }
+
+    .hamburger {
+        display: inline-flex
+    }
+
+    .book-bar {
+        display: block
+    }
+
+    body {
+        padding-bottom: 84px
+    }
+
+    .svc-wrap,
+    .faq-wrap,
+    .contact-grid {
+        grid-template-columns: 1fr
+    }
+
+    .svc-aside {
+        position: static
+    }
+}
+
+@media (max-width:768px) {
+    :root {
+        --gutter: 20px;
+        --nav-h: 64px
+    }
+
+    .nav-inner {
+        padding: 0 10px 0 14px
+    }
+
+    .brand img {
+        width: 32px;
+        height: 32px
+    }
+
+    .brand .wordmark {
+        font-size: 14px;
+        letter-spacing: 2px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap
+    }
+
+    .pad {
+        padding-top: 56px;
+        padding-bottom: 56px
+    }
+
+    .hero {
+        padding-top: 36px
+    }
+
+    .hero h1 {
+        font-size: 42px
+    }
+
+    .hero .lead {
+        font-size: 16px
+    }
+
+    h2 {
+        font-size: 30px
+    }
+
+    .hero-band {
+        grid-template-columns: 1fr;
+        gap: 14px
+    }
+
+    .hero-band .tile {
+        aspect-ratio: 16/10
+    }
+
+    .svc-row {
+        grid-template-columns: 1fr;
+        gap: 8px
+    }
+
+    .svc-row .price {
+        text-align: left
+    }
+
+    .c-info {
+        grid-template-columns: 1fr
+    }
+
+    .contact {
+        margin: 0 var(--gutter)
+    }
+
+    .footer-inner {
+        flex-direction: column;
+        align-items: flex-start
+    }
+
+    .car-btn.prev {
+        left: 2px
+    }
+
+    .car-btn.next {
+        right: 2px
+    }
+}
+
+@media (prefers-reduced-motion:reduce) {
+    html {
+        scroll-behavior: auto
+    }
+
+    * {
+        transition: none !important
+    }
+}
+
+/* ============================================================
+   SECTION LAYOUT — About, provider bio, service/shop card grids
+   You ALREADY have: .rp, .eyebrow, .headline, .hero h1 em,
+   .hero .lead  — don't re-add those.
+   ============================================================ */
+
+/* ---- shared panel padding (this is what fixes the About panel) ---- */
+.panel {
+    padding: 40px 44px;
+}
+
+/* ---- About / bio: two-column split (label+heading | body) ---- */
+.split {
+    display: grid;
+    grid-template-columns: 5fr 7fr;
+    gap: 44px;
+    align-items: start;
+}
+
+.split.narrow {
+    grid-template-columns: 5fr 6fr;
+}
+
+.split.narrow-reverse {
+    grid-template-columns: 6fr 5fr;
+}
+
+/* bio: portrait col a touch wider */
+.section-intro {
+    max-width: 720px;
+}
+
+.section-intro .lead {
+    margin-top: 6px;
+}
+
+.about-copy p,
+.bio p {
+    color: var(--body);
+    max-width: 62ch;
+    margin-bottom: 14px;
+}
+
+.about-copy p:last-child,
+.bio p:last-child {
+    margin-bottom: 0;
+}
+
+/* ---- provider bio extras ---- */
+.role {
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--ink-green);
+    margin: 4px 0 18px;
+}
+
+.sig {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 26px;
+    color: var(--rose-gold-deep);
+    margin-top: 20px;
+}
+
+.portrait {
+    position: relative;
+    aspect-ratio: 4/5;
+    border-radius: var(--radius-card);
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+    padding: 18px;
+    color: var(--muted);
+    font-size: 12px;
+    background: rgba(255, 255, 255, .4);
+    border: 1px solid rgba(255, 255, 255, .55);
+}
+
+.portrait img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* ---- service / shop category heads + card grid ---- */
+.cat-head {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 28px;
+    max-width: 760px;
+}
+
+.cat-head .lead {
+    font-size: 17px;
+}
+
+.cat-head.panel-head {
+    padding: 24px 30px;
+}
+
+/* sub-category headings (Injectables / Skincare under the Services h2) */
+.subcat {
+    font-size: 30px;
+    font-weight: 500;
+    color: var(--heading);
+    margin: 0 0 16px;
+}
+
+.card-grid+.subcat {
+    margin-top: 46px;
+}
+
+/* space above the 2nd+ sub-category */
+
+/* when the head itself is a glass rp panel */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+}
+
+.info-card {
+    padding: 26px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+}
+
+.info-card h3,
+.info-card h4 {
+    font-size: 23px;
+    font-weight: 500;
+    line-height: 1.1;
+}
+
+.info-card p {
+    font-size: 14.5px;
+    line-height: 1.62;
+    color: var(--body);
+}
+
+.info-card.wide {
+    grid-column: 1 / -1;
+}
+
+/* full-width card (e.g. the acne block) */
+
+/* ---- brand / route chips inside cards ---- */
+.chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: auto;
+    padding-top: 4px;
+}
+
+.chips span {
+    font-size: 11.5px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--accent-deep);
+    background: rgba(255, 255, 255, .5);
+    border: 1px solid rgba(255, 255, 255, .62);
+    padding: 5px 12px;
+    border-radius: 999px;
+}
+
+.chips .lbl {
+    color: var(--muted);
+    background: none;
+    border: none;
+    padding: 5px 2px;
+}
+
+/* a "Routes:" label */
+.chips .route {
+    color: var(--body);
+}
+
+/* ---- optional alternating section wash for rhythm ---- */
+.tint {
+    position: relative;
+}
+
+.tint::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: rgba(255, 255, 255, .18);
+    border-top: 1px solid rgba(255, 255, 255, .4);
+    border-bottom: 1px solid rgba(255, 255, 255, .4);
+}
+
+/* ---- responsive (keep AFTER the rules above) ---- */
+@media (max-width:900px) {
+    .card-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .info-card.wide {
+        grid-column: auto;
+    }
+}
+
+@media (max-width:860px) {
+
+    .split,
+    .split.narrow {
+        grid-template-columns: 1fr;
+        gap: 28px;
+    }
+
+    .portrait {
+        max-width: 420px;
+    }
+}
+
+@media (max-width:768px) {
+    .panel {
+        padding: 26px 22px;
+    }
+
+    .cat-head.panel-head {
+        padding: 20px 22px;
+    }
+}
