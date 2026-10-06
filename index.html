@@ -37,6 +37,7 @@
     <link href="soffe-aesthetics.css" rel="stylesheet">
     <script src="soffe-aesthetics-base.js" defer></script>
     <script src="soffe-aesthetics-menu.js" defer></script>
+    <script src="soffe-aesthetics-wellness.js" defer></script>
 
     <!-- LocalBusiness / MedicalBusiness structured data.-->
     <script type="application/ld+json">
@@ -283,7 +284,125 @@
             </div>
         </section>
 
+
+        <!-- ============ FUNCTIONAL WELLNESS (replaces the old #wellness section) ============ -->
+        <!-- ============ FUNCTIONAL WELLNESS (replaces the old #wellness section) ============ -->
+        <!-- Copy is the client's original text, split into the new layout. Only edit: "Danelle" → "Danielle". -->
         <section id="wellness" class="pad">
+            <div class="wrap">
+                <div class="sec-head wl-head">
+                    <h2 class="eyebrow">Functional Wellness</h2>
+                </div>
+
+                <!-- Flagship program: one glass panel, NO glass nested inside it -->
+                <article class="program glass rp panel" aria-labelledby="hormone-title">
+                    <div class="split">
+                        <div>
+                            <h3 id="hormone-title" class="subcat">Hormone Optimization</h3>
+                            <p class="program-kicker">Bioidentical Hormone Replacement Therapy</p>
+                        </div>
+                        <div class="program-copy">
+                            <p class="lead">Women and Men to feel their best</p>
+                        </div>
+                    </div>
+
+                    <!-- Step headings are layout labels, not client copy -->
+                    <ol class="pathway" aria-label="BHRT process">
+                        <li class="step">
+                            <h4>Consultation</h4>
+                            <p>BHRT consultation is an initial medical appointment to evaluate symptoms of hormone
+                                imbalance, review health history, and discuss plant-derived, chemically identical
+                                hormone options. Danielle will outline a customized treatment plan, BHRT delivery
+                                methods and prescriptions, and diagnostic lab testing.</p>
+                        </li>
+                        <li class="step">
+                            <h4>Lab Work</h4>
+                            <p>BHRT lab procedures involve collecting blood to measure baseline hormone levels like
+                                estrogen, progesterone, and testosterone. We will also look at kidney/liver/thyroid
+                                function, as well as your red/white blood cells and iron stores. We will use these
+                                diagnostic results to check for imbalances, evaluate symptoms, and design a customized
+                                hormone dosage.</p>
+                        </li>
+                        <li class="step">
+                            <h4>Nutraceuticals</h4>
+                            <p>Nutraceuticals are professional-grade, clinician-formulated dietary supplements designed
+                                to complement hormone optimization therapies.</p>
+                        </li>
+                    </ol>
+
+                    <div class="routes">
+                        <h4 class="routes-title">Treatment routes</h4>
+                        <!-- Tabs. Without JS every panel shows stacked; soffe-route-tabs.js wires up the tabs. -->
+                        <div class="route-grid" role="tablist" aria-label="BHRT treatment routes">
+                            <button class="route" role="tab" id="rt-pellets" aria-controls="rp-pellets"
+                                aria-selected="true">Pellets</button>
+                            <button class="route" role="tab" id="rt-creams" aria-controls="rp-creams"
+                                aria-selected="false" tabindex="-1">Topical Creams</button>
+                            <button class="route" role="tab" id="rt-injections" aria-controls="rp-injections"
+                                aria-selected="false" tabindex="-1">Injections</button>
+                            <button class="route" role="tab" id="rt-oral" aria-controls="rp-oral" aria-selected="false"
+                                tabindex="-1">Oral tablets</button>
+                        </div>
+
+                        <div class="route-detail" role="tabpanel" id="rp-pellets" aria-labelledby="rt-pellets">
+                            <h5>BHRT Pellets</h5>
+                            <p>A brief, in-office minor procedure where rice-sized compounded hormone pellets
+                                (estradiol or testosterone or combination) are placed in the subcutaneous fatty tissue
+                                of the upper hip or buttock to provide a steady, continuous release of hormones for 4
+                                to 6 months. Must have consultation and lab work prior to procedure.</p>
+                        </div>
+                        <div class="route-detail" role="tabpanel" id="rp-creams" aria-labelledby="rt-creams">
+                            <!-- TODO Danielle: topical creams copy -->
+                            <h5>Topical Creams</h5>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor
+                                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                                exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                        </div>
+                        <div class="route-detail" role="tabpanel" id="rp-injections" aria-labelledby="rt-injections">
+                            <!-- TODO Danielle: injections copy -->
+                            <h5>Injections</h5>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis aute irure dolor in
+                                reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                                Excepteur sint occaecat cupidatat non proident.</p>
+                        </div>
+                        <div class="route-detail" role="tabpanel" id="rp-oral" aria-labelledby="rt-oral">
+                            <!-- TODO Danielle: oral tablets copy -->
+                            <h5>Oral tablets</h5>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante
+                                venenatis dapibus posuere velit aliquet. Cras mattis consectetur purus sit amet
+                                fermentum.</p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Secondary services: bento grid of single-level cards -->
+                <div class="wl-grid">
+                    <article class="info-card glass-soft tall">
+                        <h3>Weight Loss/Counseling</h3>
+                        <p>A weight loss consultation is a first meeting with Danielle to review your health history,
+                            daily habits, and weight goals. The provider checks your body metrics, discusses past
+                            challenges, and creates a custom plan that may include nutrition, exercise, behavioral
+                            changes, and prescription medication. If prescription medication is the right plan for
+                            you, initial and continued labwork for monitoring is required.</p>
+                        <p>GLP-1’s available. Baseline and periodic labs will be required.</p>
+                    </article>
+                    <article class="info-card glass-soft">
+                        <h3>Peptide Therapy</h3>
+                        <!-- CHECK with Danielle: "anti-gaining" — likely meant "anti-aging" -->
+                        <p>Short chains of amino acids as targeted cellular messengers to support healing,
+                            performance, and anti-gaining.</p>
+                    </article>
+                    <article class="info-card glass-soft">
+                        <h3>Vitamin Injections</h3>
+                        <!-- CHECK with Danielle: "near 100% absorption" is an absolute claim; her call -->
+                        <p>Vitamin injections deliver concentrated nutrients, bypassing the digestive system, for near
+                            100% absorption.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- <section id="wellness" class="pad">
             <div class="wrap">
                 <h2 class="eyebrow">Functional Wellness</h2>
 
@@ -353,47 +472,74 @@
                             100% absorption.</p>
                     </div>
                 </div>
-        </section>
+            </div>
+        </section> -->
 
+        <!-- ============ SHOP (replaces the old #shop section) ============ -->
+        <!-- ============ SHOP (replaces the old #shop section) ============ -->
         <section id="shop" class="pad">
             <div class="wrap">
-                <div class="cat-head glass rp panel-head" style="max-width:revert">
-                    <h2 class="eyebrow">Shop</h2>
-                    <p class="headline">Medical-Grade Skincare Products</p>
-                    <p class="lead">Take your results home with clinician-selected, medical-grade products.</p>
-                    <!-- </div> -->
-                    <div class="card-grid">
-                        <div class="info-card glass-soft">
-                            <h3>BRIGHTENING PADS</h3>
+                <!-- Header panel closes BEFORE the grid: no glass nested in glass -->
+                <div class="shop-head glass rp panel-head">
+                    <div>
+                        <h2 class="eyebrow">Shop</h2>
+                        <p class="headline">Medical-Grade Skincare Products</p>
+                        <p class="lead">Take your results home with clinician-selected, medical-grade products.</p>
+                    </div>
+                    <!-- placeholder wording — adjust to taste -->
+                    <p class="in-office"><span aria-hidden="true">●</span> Available in office. Ask at your
+                        visit.</p>
+                </div>
+
+                <div class="product-grid">
+                    <article class="product glass-soft">
+                        <div class="product-img">
+                            <!-- <img src="/assets/brightening-pads.jpg" alt="Brightening Pads jar"> -->
+                            PRODUCT PHOTO
+                        </div>
+                        <div class="product-body">
+                            <h3>Brightening Pads</h3>
+                            <p class="product-meta">Hydroquinone-free · Rx-strength available</p>
                             <p>non-drug formulation combines botanical skin tone enhancing ingredients with protective
                                 antioxidants to brighten and soothe skin such as Kojic Acid, Arbutin, Green Tea
-                                Polyphenols,
-                                Vitamin C. Great for those that cannot use Hydroquinone.</p>
-                            <p>**Can also be prescription grade brightening pads when adding in Hydroquinone. Can be
-                                made
-                                per
-                                patient specific needs and tailored Hydroquinone dosing.</p>
+                                Polyphenols, Vitamin C. Great for those that cannot use Hydroquinone.</p>
+                            <p class="variant"><strong>Rx-strength option:</strong> Can also be prescription grade
+                                brightening pads when adding in Hydroquinone. Can be made per patient specific needs
+                                and tailored Hydroquinone dosing.</p>
                         </div>
-                        <div class="info-card glass-soft">
-                            <h3>GENTLE RECOVERY POST CARE KIT</h3>
-                            <p>All the essentials for post peel/microneedling or to be used as a travel kit) - includes
-                                a
-                                gentle cleanser, a calming serum with botanicals to calm redness in skin, a vitamin C
-                                serum
-                                to brighten, protect, and support healthy collagen, and a moisturizer to renew
-                                compromised
-                                skin and restore skin’s natural moisture levels.</p>
+                    </article>
+
+                    <article class="product glass-soft">
+                        <div class="product-img">
+                            <!-- <img src="/assets/post-care-kit.jpg" alt="Gentle Recovery Post Care Kit"> -->
+                            PRODUCT PHOTO
                         </div>
-                        <div class="info-card glass-soft">
-                            <h3>ELTA MD UV DAILY HYDRATION + TINTED SPF 50</h3>
+                        <div class="product-body">
+                            <h3>Gentle Recovery Post Care Kit</h3>
+                            <p class="product-meta">4-piece kit · Travel friendly</p>
+                            <p>All the essentials for post peel/microneedling or to be used as a travel kit - includes
+                                a gentle cleanser, a calming serum with botanicals to calm redness in skin, a vitamin C
+                                serum to brighten, protect, and support healthy collagen, and a moisturizer to renew
+                                compromised skin and restore skin’s natural moisture levels.</p>
+                            <p class="pairs">Pairs with <a href="#services">Microneedling</a> &amp; <a
+                                    href="#services">Chemical Peels</a></p>
+                        </div>
+                    </article>
+
+                    <article class="product glass-soft">
+                        <div class="product-img">
+                            <!-- <img src="/assets/eltamd-uv-daily.jpg" alt="EltaMD UV Daily Tinted SPF 50"> -->
+                            PRODUCT PHOTO
+                        </div>
+                        <div class="product-body">
+                            <h3>EltaMD UV Daily Hydration + Tinted SPF 50</h3>
+                            <p class="product-meta">1.7 oz · Broad spectrum</p>
                             <p>Combines powerful broad-spectrum sun protection with long-lasting hydration and a sheer
                                 tinted finish that helps enhance and even the appearance of skin. Helps protect against
-                                five
-                                environmental stressors, including blue light and pollution. Layers beautifully under
-                                makeup
-                                or can be worn alone for a naturally radiant finish. Size 1.7 Oz.</p>
+                                five environmental stressors, including blue light and pollution. Layers beautifully
+                                under makeup or can be worn alone for a naturally radiant finish.</p>
                         </div>
-                    </div>
+                    </article>
                 </div>
             </div>
         </section>
@@ -463,7 +609,7 @@
 
         </div>
     </footer>
-    
+
     <div class="book-bar" id="bookBar">
         <a class="btn btn-primary" href="[VAGARO-URL]" target="_blank" rel="noopener" data-track="book_click"
             data-loc="mobile-bar">Book Now</a>
