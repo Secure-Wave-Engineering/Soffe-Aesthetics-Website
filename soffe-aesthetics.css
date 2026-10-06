@@ -1446,6 +1446,9 @@ h2 {
 .card-grid+.subcat {
     margin-top: 46px;
 }
+.card-list+.subcat {
+    margin-top: 46px;
+}
 
 /* space above the 2nd+ sub-category */
 
@@ -1453,6 +1456,11 @@ h2 {
 .card-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+}
+
+.card-list {
+    display: grid;
     gap: 16px;
 }
 
