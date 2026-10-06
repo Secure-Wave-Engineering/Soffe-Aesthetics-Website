@@ -1,0 +1,64 @@
+# Temporary preview deploy to GitHub Pages.
+# Publishes only the site files (not .github/, docs, etc.) and marks the
+# preview noindex so search engines don't pick up placeholder content.
+# For the real launch: delete the "Block indexing" step.
+
+name: Deploy preview to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# One deploy at a time; let an in-progress deploy finish rather than cancel it mid-publish.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/configure-pages@v5
+
+      - name: Stage site files
+        run: |
+          mkdir -p _site
+          # Top-level web files only; add folders (e.g. assets/) here as the site grows.
+          find . -maxdepth 1 -type f \( -name '*.html' -o -name '*.css' -o -name '*.js' \
+            -o -name '*.jpg' -o -name '*.jpeg' -o -name '*.png' -o -name '*.svg' -o -name '*.webp' -o -name '*.ico' \) \
+            -exec cp {} _site/ \;
+          [ -d assets ] && cp -r assets _site/ || true
+          ls -la _site
+
+      # Pages serves project sites under /<repo>/, so root-absolute "/assets/..."
+      # would point at the org root and 404. Make them relative in the build only.
+      - name: Make asset paths relative
+        run: sed -i 's#\(href\|src\)="/assets/#\1="assets/#g' _site/index.html
+
+      - name: Block indexing (preview only)
+        run: |
+          sed -i 's#<head>#<head>\n    <meta name="robots" content="noindex, nofollow">#' _site/index.html
+          printf 'User-agent: *\nDisallow: /\n' > _site/robots.txt
+          grep -q 'noindex' _site/index.html
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
