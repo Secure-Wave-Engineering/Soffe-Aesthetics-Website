@@ -2018,7 +2018,7 @@ h2 {
 @media (max-width:860px) {
 
     .split,
-    .split.narrow
+    .split.narrow,
     .split.narrow-reverse {
         grid-template-columns: 1fr;
         gap: 28px;
