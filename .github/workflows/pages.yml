@@ -31,17 +31,17 @@ jobs:
       - name: Stage site files
         run: |
           mkdir -p _site
-          # Top-level web files only; add folders (e.g. assets/) here as the site grows.
+          # Top-level web files only; add folders (e.g. images/) here as the site grows.
           find . -maxdepth 1 -type f \( -name '*.html' -o -name '*.css' -o -name '*.js' \
             -o -name '*.jpg' -o -name '*.jpeg' -o -name '*.png' -o -name '*.svg' -o -name '*.webp' -o -name '*.ico' \) \
             -exec cp {} _site/ \;
-          [ -d assets ] && cp -r assets _site/ || true
+          [ -d images ] && cp -r images _site/ || true
           ls -la _site
 
-      # Pages serves project sites under /<repo>/, so root-absolute "/assets/..."
+      # Pages serves project sites under /<repo>/, so root-absolute "/images/..."
       # would point at the org root and 404. Make them relative in the build only.
       - name: Make asset paths relative
-        run: sed -i 's#\(href\|src\)="/assets/#\1="assets/#g' _site/index.html
+        run: sed -i 's#\(href\|src\)="/images/#\1="images/#g' _site/index.html
 
       - name: Block indexing (preview only)
         run: |
