@@ -2038,3 +2038,126 @@ h2 {
         padding: 20px 22px;
     }
 }
+/* ============================================================
+   SERVICE CARD PHOTOS + RESULTS (before/after carousels)
+   Reuses the existing .carousel / .car-btn / .dots / .results-head rules.
+   ============================================================ */
+
+/* photo across the top of a service card */
+.info-card.has-img {
+    overflow: hidden;
+}
+
+/* Safari/iOS won't clip children to border-radius on an element with
+   backdrop-filter (.glass-soft), so the photo wrapper rounds itself. */
+.card-img {
+    margin: -26px -28px 6px;
+    aspect-ratio: 2/1;
+    overflow: hidden;
+    border-radius: 15px 15px 0 0; /* card radius (16px) minus its 1px border */
+    background: rgba(255, 255, 255, .4);
+}
+
+.card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.see-results {
+    margin-top: 4px;
+    font-size: 13px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-weight: 400;
+    color: var(--accent-deep);
+}
+
+.info-card .chips + .see-results {
+    margin-top: 2px;
+}
+
+.info-card > p + .see-results {
+    margin-top: auto;
+}
+
+/* treatment tabs */
+.res-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.res-tab {
+    min-height: 44px;
+    padding: 10px 20px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, .7);
+    background: rgba(255, 255, 255, .45);
+    color: var(--heading);
+    font-family: var(--font-body);
+    font-size: 13px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background var(--dur) var(--ease), color var(--dur) var(--ease);
+}
+
+.res-tab:hover {
+    background: rgba(255, 255, 255, .7);
+}
+
+.res-tab[aria-selected="true"] {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+}
+
+.res-panel[hidden],
+.dots[hidden] {
+    display: none;
+}
+
+/* one square composite photo per slide; 2 across on desktop/tablet, 1 on phones */
+.carousel .slide.shot {
+    flex: 0 0 50%;
+    padding: 6px;
+    scroll-snap-align: start;
+}
+
+.slide.shot img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, .4);
+}
+
+@media (max-width: 680px) {
+    .carousel .slide.shot {
+        flex-basis: 100%;
+    }
+
+    #results .carousel {
+        padding: 12px;
+    }
+
+    /* phones swipe; dots show position, so the arrows just cover the photo */
+    #results .car-btn {
+        display: none;
+    }
+
+    .res-tab {
+        padding: 10px 14px;
+        font-size: 12px;
+        letter-spacing: 1px;
+    }
+}
+
+/* Same Safari clipping fix for the Shop product photos */
+.product-img {
+    border-radius: 15px 15px 0 0;
+    overflow: hidden;
+}

@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Soffe Aesthetics</title> 
+    <title>Soffe Aesthetics</title>
     <meta name="description"
         content="Soffe Aesthetics & Wellness, where medical expertise meets personalized aesthetics and wellness.">
     <link rel="canonical" href="https://[DOMAIN]/">
@@ -25,10 +25,9 @@
         content="Nurse practitioner-led injectables and skincare. Natural results, consult-first care.">
     <meta name="twitter:image" content="https://[DOMAIN]/assets/og-image.jpg">
 
-    <!-- Favicons (generate a set and drop them in /assets) -->
-    <link rel="icon" href="/assets/favicon.ico" sizes="any">
-    <link rel="icon" href="/assets/icon.svg" type="image/svg+xml">
-    <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+    <!-- Favicons -->
+    <link rel="icon" href="/images/favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
 
     <!-- Fonts. Self-host for best Lighthouse; CDN is fine to start. -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -40,6 +39,7 @@
     <script src="soffe-aesthetics-base.js" defer></script>
     <script src="soffe-aesthetics-menu.js" defer></script>
     <script src="soffe-aesthetics-wellness.js" defer></script>
+    <script src="soffe-aesthetics-results.js" defer></script>
 
     <!-- LocalBusiness / MedicalBusiness structured data.-->
     <script type="application/ld+json">
@@ -59,7 +59,7 @@
     { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Tuesday","Wednesday","Thursday","Friday"], "opens": "10:00", "closes": "18:00" },
     { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "10:00", "closes": "15:00" }
   ],
-  "sameAs": ["[INSTAGRAM-URL]", "[FACEBOOK-URL]", "[TIKTOK-URL]"]
+  "sameAs": ["https://www.instagram.com/soffeaestheticsnp/", "[FACEBOOK-URL]", "https://www.tiktok.com/@soffeaestheticsnp"]
 }
 </script>
 </head>
@@ -160,7 +160,7 @@
                         Danielle takes a thoughtful, individualized approach to every patient. Her philosophy combines
                         medical expertise, evidence-based treatments, and an appreciation for natural-looking results.
                     </p>
-                    <p> Soffe Aesthetics & Wellness, Danielle provides personalized aesthetic services while also
+                    <p>At Soffe Aesthetics & Wellness, Danielle provides personalized aesthetic services while also
                         incorporating wellness-focused care, including hormone optimization and individualized wellness
                         strategies designed to support overall health, confidence, and quality of life. </p>
                     <p>Danielle believes aesthetic medicine should be about more than changing the way you look – it
@@ -184,7 +184,11 @@
 
                 <h3 class="subcat">Injectables</h3>
                 <div class="card-grid">
-                    <article class="info-card glass-soft">
+                    <article class="info-card glass-soft has-img">
+                        <div class="card-img">
+                            <img src="/images/product-neuromodulators-1.jpg" alt="Danielle holding Dysport and Jeuveau"
+                                loading="lazy" decoding="async" style="object-position:50% 90%">
+                        </div>
                         <h4>NEUROMODULATORS</h4>
                         <p>FDA approved injectable treatment that temporarily relaxes targeted facial and neck muscles
                             to
@@ -197,7 +201,11 @@
                         </div>
                     </article>
 
-                    <article class="info-card glass-soft">
+                    <article class="info-card glass-soft has-img">
+                        <div class="card-img">
+                            <img src="/images/product-fillers-2.jpg" alt="Dermal fillers" loading="lazy"
+                                decoding="async" style="object-position:50% 0%">
+                        </div>
                         <h4>DERMAL FILLERS</h4>
                         <p>FDA approved Hyaluronic Acid injectable treatments that address static wrinkles and volume
                             loss,
@@ -224,7 +232,11 @@
                         </div>
                     </article>
 
-                    <article class="info-card glass-soft">
+                    <article class="info-card glass-soft has-img">
+                        <div class="card-img">
+                            <img src="/images/product-kybella-1.jpg" alt="Kybella (deoxycholic acid) injection"
+                                loading="lazy" decoding="async" style="object-position:50% 57%">
+                        </div>
                         <h4>CONTOURING/FAT LOSS</h4>
                         <p>FDA approved solution designed to address submental fullness, commonly known as the double
                             chin.
@@ -239,6 +251,10 @@
                 <h3 class="subcat">Skincare Treatments</h3>
                 <div class="card-grid">
                     <article class="info-card glass-soft">
+                        <div class="card-img">
+                            <img src="/images/microneedling-1.jpg" alt="Collagen P.I.N. microneedling pen"
+                                loading="lazy" decoding="async" style="object-position:50% 55%">
+                        </div>
                         <h4>MICRONEEDLING</h4>
                         <p>A minimally invasive procedure that stimulates the skin’s natural collagen and elastin
                             production. Tiny, sterile needles create controlled micro-injuries, promoting the body's
@@ -318,7 +334,8 @@
                                 methods and prescriptions, and diagnostic lab testing.</p>
                         </li>
                         <li class="step">
-                            <h4>Lab Work</h4>
+                            <!-- <h4>Lab Work</h4> -->
+                            <h4>Lab Panel and Evaluation</h4>
                             <p>BHRT lab procedures involve collecting blood to measure baseline hormone levels like
                                 estrogen, progesterone, and testosterone. We will also look at kidney/liver/thyroid
                                 function, as well as your red/white blood cells and iron stores. We will use these
@@ -348,6 +365,7 @@
 
                         <div class="route-detail" role="tabpanel" id="rp-pellets" aria-labelledby="rt-pellets">
                             <h5>BHRT Pellets</h5>
+                            <!-- <h5>BHRT with Pellets (Procedure)</h5> -->
                             <p>A brief, in-office minor procedure where rice-sized compounded hormone pellets
                                 (estradiol or testosterone or combination) are placed in the subcutaneous fatty tissue
                                 of the upper hip or buttock to provide a steady, continuous release of hormones for 4
@@ -476,7 +494,6 @@
         </section> -->
 
         <!-- ============ SHOP (replaces the old #shop section) ============ -->
-        <!-- ============ SHOP (replaces the old #shop section) ============ -->
         <section id="shop" class="pad">
             <div class="wrap">
                 <!-- Header panel closes BEFORE the grid: no glass nested in glass -->
@@ -488,7 +505,7 @@
                     </div>
                     <!-- placeholder wording — adjust to taste -->
                     <p class="in-office"><span aria-hidden="true">●</span> Available in office. Ask at your
-                        visit.</p>
+                        next visit.</p>
                 </div>
 
                 <div class="product-grid">
@@ -542,6 +559,135 @@
             </div>
         </section>
 
+        <!-- ============ RESULTS: before & after (carousel per treatment) ============ -->
+        <section id="results" class="pad">
+            <div class="wrap">
+                <div class="results-head">
+                    <div class="sec-head">
+                        <h2 class="eyebrow">Results</h2>
+                        <p class="headline">Before &amp; After</p>
+                    </div>
+                    <!-- CONFIRM with Danielle: consent wording (not from her copy) -->
+                    <p class="consent">Photos shared with patient consent. Individual results vary.</p>
+                </div>
+
+                <div class="res-tabs" role="tablist" aria-label="Treatment">
+                    <button class="res-tab" type="button" role="tab" id="rt-neuro" aria-controls="rp-neuro"
+                        aria-selected="true">Neuromodulators</button>
+                    <button class="res-tab" type="button" role="tab" id="rt-filler" aria-controls="rp-filler"
+                        aria-selected="false" tabindex="-1">Dermal Fillers</button>
+                </div>
+
+                <div class="res-panel" role="tabpanel" id="rp-neuro" aria-labelledby="rt-neuro">
+                    <div class="carousel glass" role="group" aria-roledescription="carousel"
+                        aria-label="Neuromodulator before and after">
+                        <div class="carousel-viewport">
+                            <ul class="carousel-track">
+                                <li class="slide shot" role="group" aria-roledescription="slide" aria-label="1 of 7">
+                                    <img src="/images/neuromodulators-1.jpg"
+                                        alt="Neuromodulator before and after, result 1" width="1999" height="1999"
+                                        loading="lazy" decoding="async">
+                                </li>
+                                <li class="slide shot" role="group" aria-roledescription="slide" aria-label="2 of 7">
+                                    <img src="/images/neuromodulators-2.jpg"
+                                        alt="Neuromodulator before and after, result 2" width="1999" height="1999"
+                                        loading="lazy" decoding="async">
+                                </li>
+                                <li class="slide shot" role="group" aria-roledescription="slide" aria-label="3 of 7">
+                                    <img src="/images/neuromodulators3.jpg"
+                                        alt="Neuromodulator before and after, result 3" width="1999" height="1999"
+                                        loading="lazy" decoding="async">
+                                </li>
+                                <li class="slide shot" role="group" aria-roledescription="slide" aria-label="4 of 7">
+                                    <img src="/images/neuromodulators-4.jpg"
+                                        alt="Neuromodulator before and after, result 4" width="1999" height="1999"
+                                        loading="lazy" decoding="async">
+                                </li>
+                                <li class="slide shot" role="group" aria-roledescription="slide" aria-label="5 of 7">
+                                    <img src="/images/neuromodulators-5.jpg"
+                                        alt="Neuromodulator before and after, result 5" width="1999" height="1999"
+                                        loading="lazy" decoding="async">
+                                </li>
+                                <li class="slide shot" role="group" aria-roledescription="slide" aria-label="6 of 7">
+                                    <img src="/images/neuromodulators-6.jpg"
+                                        alt="Neuromodulator before and after, result 6" width="1999" height="1999"
+                                        loading="lazy" decoding="async">
+                                </li>
+                                <li class="slide shot" role="group" aria-roledescription="slide" aria-label="7 of 7">
+                                    <img src="/images/neuromodulators-7.jpg"
+                                        alt="Neuromodulator before and after, result 7" width="1999" height="1999"
+                                        loading="lazy" decoding="async">
+                                </li>
+                            </ul>
+                        </div>
+                        <button class="car-btn prev" type="button" aria-label="Previous result"><svg width="18"
+                                height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                aria-hidden="true">
+                                <path d="M15 6l-6 6 6 6" />
+                            </svg></button>
+                        <button class="car-btn next" type="button" aria-label="Next result"><svg width="18" height="18"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                aria-hidden="true">
+                                <path d="M9 6l6 6-6 6" />
+                            </svg></button>
+                    </div>
+                    <div class="dots" aria-label="Choose result"></div>
+                    <p class="visually-hidden" aria-live="polite"></p>
+                </div>
+                <div class="res-panel" role="tabpanel" id="rp-filler" aria-labelledby="rt-filler" hidden>
+                    <div class="carousel glass" role="group" aria-roledescription="carousel"
+                        aria-label="Dermal filler before and after">
+                        <div class="carousel-viewport">
+                            <ul class="carousel-track">
+                                <li class="slide shot" role="group" aria-roledescription="slide" aria-label="1 of 6">
+                                    <img src="/images/dermal_filler-1.jpg"
+                                        alt="Dermal filler before and after, result 1" width="1999" height="1999"
+                                        loading="lazy" decoding="async">
+                                </li>
+                                <li class="slide shot" role="group" aria-roledescription="slide" aria-label="2 of 6">
+                                    <img src="/images/dermal_filler-2.jpg"
+                                        alt="Dermal filler before and after, result 2" width="1999" height="1999"
+                                        loading="lazy" decoding="async">
+                                </li>
+                                <li class="slide shot" role="group" aria-roledescription="slide" aria-label="3 of 6">
+                                    <img src="/images/dermal_filler-3.jpg"
+                                        alt="Dermal filler before and after, result 3" width="1999" height="1999"
+                                        loading="lazy" decoding="async">
+                                </li>
+                                <li class="slide shot" role="group" aria-roledescription="slide" aria-label="4 of 6">
+                                    <img src="/images/dermal_filler-4.jpg"
+                                        alt="Dermal filler before and after, result 4" width="1999" height="1999"
+                                        loading="lazy" decoding="async">
+                                </li>
+                                <li class="slide shot" role="group" aria-roledescription="slide" aria-label="5 of 6">
+                                    <img src="/images/dermal_filler-5.jpg"
+                                        alt="Dermal filler before and after, result 5" width="1999" height="1999"
+                                        loading="lazy" decoding="async">
+                                </li>
+                                <li class="slide shot" role="group" aria-roledescription="slide" aria-label="6 of 6">
+                                    <img src="/images/dermal_filler-6.jpg"
+                                        alt="Dermal filler before and after, result 6" width="1999" height="1999"
+                                        loading="lazy" decoding="async">
+                                </li>
+                            </ul>
+                        </div>
+                        <button class="car-btn prev" type="button" aria-label="Previous result"><svg width="18"
+                                height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                aria-hidden="true">
+                                <path d="M15 6l-6 6 6 6" />
+                            </svg></button>
+                        <button class="car-btn next" type="button" aria-label="Next result"><svg width="18" height="18"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                aria-hidden="true">
+                                <path d="M9 6l6 6-6 6" />
+                            </svg></button>
+                    </div>
+                    <div class="dots" aria-label="Choose result"></div>
+                    <p class="visually-hidden" aria-live="polite"></p>
+                </div>
+            </div>
+        </section>
+
         <section id="contact" class="contact">
             <div class="wrap contact-grid">
                 <div class="contact-left">
@@ -556,12 +702,13 @@
                         <div><span class="lbl">Phone / Text</span><a href="tel:202-302-9392"
                                 data-track="phone_click">202-302-9392</a>
                         </div>
-                        <div><span class="lbl">Email</span><a href="mailto:Danielle@soffeaesthetics.com" data-track="email_click">Danielle@soffeaesthetics.com</a>
+                        <div><span class="lbl">Email</span><a href="mailto:Danielle@soffeaesthetics.com"
+                                data-track="email_click">Danielle@soffeaesthetics.com</a>
                         </div>
                     </div>
                     <div class="socials" aria-label="Social media">
-                        <a href="[INSTAGRAM-URL]" target="_blank" rel="noopener" aria-label="Instagram"
-                            data-track="social_click" data-loc="instagram">
+                        <a href="https://www.instagram.com/soffeaestheticsnp/" target="_blank" rel="noopener"
+                            aria-label="Instagram" data-track="social_click" data-loc="instagram">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
                                 aria-hidden="true">
                                 <rect x="3" y="3" width="18" height="18" rx="5" />
@@ -576,8 +723,8 @@
                                     d="M14 9h3l.4-3H14V4.2c0-.85.25-1.4 1.5-1.4H17.5V.2C17.1.15 16.1 0 15 0c-2.3 0-3.9 1.4-3.9 4V6H8.2v3h2.9v9H14V9z" />
                             </svg>
                         </a>
-                        <a href="[TIKTOK-URL]" target="_blank" rel="noopener" aria-label="TikTok"
-                            data-track="social_click" data-loc="tiktok">
+                        <a href="https://www.tiktok.com/@soffeaestheticsnp" target="_blank" rel="noopener"
+                            aria-label="TikTok" data-track="social_click" data-loc="tiktok">
                             <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                                 <path
                                     d="M16.5 3c.35 2 1.6 3.55 3.5 3.85V9.4c-1.3.03-2.55-.38-3.6-1.1v5.9c0 3.2-2.6 5.55-5.75 5.05-2.3-.37-4.1-2.4-4.15-4.75-.06-2.95 2.6-5.25 5.55-4.7V12.3c-.42-.13-.9-.17-1.35-.08-1.1.2-1.85 1.25-1.6 2.38.22 1 1.18 1.72 2.2 1.6 1.1-.1 1.9-1.05 1.9-2.18V3h2.75z" />
@@ -587,12 +734,13 @@
                     <div class="contact-actions">
                         <a class="btn btn-primary" href="[VAGARO-URL]" target="_blank" rel="noopener"
                             data-track="book_click" data-loc="contact">Book Online</a>
-                        <a class="btn btn-ghost-light" href="[INSTAGRAM-URL]" target="_blank" rel="noopener">Follow
+                        <a class="btn btn-ghost-light" href="https://www.instagram.com/soffeaestheticsnp/"
+                            target="_blank" rel="noopener">Follow
                             us</a>
                     </div>
                 </div>
-                <a class="map-card" href="https://maps.app.goo.gl/x3boXAdwAdwgwq6h8"
-                    target="_blank" rel="noopener" aria-label="Open location in Google Maps">
+                <a class="map-card" href="https://maps.app.goo.gl/x3boXAdwAdwgwq6h8" target="_blank" rel="noopener"
+                    aria-label="Open location in Google Maps">
                     <span class="pin"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                             stroke-width="1.7" aria-hidden="true">
                             <path d="M12 21s7-6.3 7-11a7 7 0 1 0-14 0c0 4.7 7 11 7 11z" />
